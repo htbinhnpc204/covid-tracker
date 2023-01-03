@@ -11,6 +11,7 @@ const Tabs = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarShowLabel: false,
+                tabBarLabelPosition: 'bottom',
                 tabBarHideOnKeyboard: true,
                 headerShown: false,
                 tabBarIcon: ({ focused }) => {
@@ -19,18 +20,17 @@ const Tabs = () => {
                     if (route.name === constants.ROUTE.HOME)
                         iconName = focused ? 'globe' : 'globe-outline'
                     if (route.name === constants.ROUTE.DETAILS)
-                        iconName = focused ? 'albums' : 'albums-outline'
+                        iconName = focused ? 'list' : 'list-outline'
 
-                    return <Icon name={iconName} size={22} color={constants.color.primary} />
+                    return <Icon name={iconName} size={25} color={constants.color.primary} />
                 },
                 tabBarStyle: {
                     position: 'absolute',
                     width: constants.dimensions.screen.width * 0.95,
-                    height: 40,
                     left: constants.dimensions.screen.width * 0.025,
                     bottom: constants.dimensions.screen.height * 0.025,
                     backgroundColor: constants.color.secondary,
-                    borderRadius: 12
+                    borderRadius: 12,
                 },
                 tabBarIconStyle: {
                     margin: 5,

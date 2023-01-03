@@ -1,24 +1,40 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
+import {
+    StyleSheet,
+    Text,
+    View,
+} from 'react-native'
 import { useState, useEffect } from 'react'
 import React from 'react'
 import CovidAPI from '../../controller/APIs/covid-19/CovidAPI'
 import LinearGradient from 'react-native-linear-gradient'
 import Constants from '../../controller/Constants'
 
+
 const HomeScreen = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [worldData, setWorldData] = useState({})
+    
 
     useEffect(() => {
         getWorldStatically()
-        console.log(worldData)
+        getAll()
     }, [])
 
     const getWorldStatically = async () => {
         setIsLoading(true)
         try {
-            const response = await CovidAPI.world()
+            const response = await CovidAPI.getWorld()
             setWorldData(response.data[0])
+            setIsLoading(false)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const getAll = async () => {
+        setIsLoading(true)
+        try {
+            const response = await CovidAPI.getAll()
+            setData(response.data)
             setIsLoading(false)
         } catch (err) {
             console.log(err)
@@ -84,6 +100,7 @@ const HomeScreen = () => {
                     </View>
                 </View>
             )}
+            
         </View>
     )
 }
@@ -93,7 +110,8 @@ export default HomeScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Constants.color.background
+        backgroundColor: Constants.color.background,
+        paddingHorizontal: 15
     },
     header: {
         marginTop: 15,
@@ -122,12 +140,5 @@ const styles = StyleSheet.create({
         fontSize: Constants.font.content.size,
         letterSpacing: Constants.font.content.spacing,
         textTransform: 'uppercase'
-    },
-    gradient: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
     }
 })
