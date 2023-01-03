@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const DetailsScreen = () => {
     return (
-        <View>
-            <Text>DetailScreen</Text>
-        </View>
+        <SafeAreaView>
+            <View>
+                <Text>DetailScreen</Text>
+            </View>
+        </SafeAreaView>
     )
 }
 

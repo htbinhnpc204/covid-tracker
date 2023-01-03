@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import constants from '../../controller/Constants'
 import DetailsScreen from '../details/DetailsScreen'
 import HomeScreen from '../home/HomeScreen'
-import Icon from 'react-native-ionicons'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const Tab = createBottomTabNavigator()
 
@@ -10,26 +10,36 @@ const Tabs = () => {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
+                tabBarShowLabel: false,
+                tabBarHideOnKeyboard: true,
+                headerShown: false,
+                tabBarIcon: ({ focused }) => {
                     let iconName
-                    console.log(route.name)
-                    if (route.name === 'Home Screen') {
-                        iconName = focused
-                            ? 'information-circle'
-                            : 'information-circle-outline'
-                    } else if (route.name === 'Settings') {
-                        iconName = focused ? 'list' : 'list-outline'
-                    }
 
-                    // You can return any component that you like here!
-                    return <Icon name={iconName} size={size} color={color} />
+                    if (route.name === constants.ROUTE.HOME)
+                        iconName = focused ? 'home' : 'home-outline'
+                    if (route.name === constants.ROUTE.DETAILS)
+                        iconName = focused ? 'albums' : 'albums-outline'
+
+                    return <Icon name={iconName} size={22} color={constants.color.primary} />
                 },
-                tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: 'gray'
+                tabBarStyle: {
+                    position: 'absolute',
+                    width: constants.dimensions.screen.width * 0.95,
+                    height: 40,
+                    left: constants.dimensions.screen.width * 0.025,
+                    bottom: constants.dimensions.screen.height * 0.025,
+                    backgroundColor: constants.color.secondary,
+                    borderRadius: 12
+                },
+                tabBarIconStyle: {
+                    margin: 5,
+                    borderRadius: 10
+                }
             })}
         >
-            <Tab.Screen name={constants.screenName.home} component={HomeScreen}></Tab.Screen>
-            <Tab.Screen name={constants.screenName.detail} component={DetailsScreen}></Tab.Screen>
+            <Tab.Screen name={constants.ROUTE.HOME} component={HomeScreen}></Tab.Screen>
+            <Tab.Screen name={constants.ROUTE.DETAILS} component={DetailsScreen}></Tab.Screen>
         </Tab.Navigator>
     )
 }
