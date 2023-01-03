@@ -6,16 +6,20 @@ import LinearGradient from 'react-native-linear-gradient'
 import Constants from '../../controller/Constants'
 
 const HomeScreen = () => {
-    const [worldData, setWorldData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [worldData, setWorldData] = useState({})
 
     useEffect(() => {
         getWorldStatically()
-    })
+        console.log(worldData)
+    }, [])
 
     const getWorldStatically = async () => {
+        setIsLoading(true)
         try {
             const response = await CovidAPI.world()
-            setWorldData(response.data)
+            setWorldData(response.data[0])
+            setIsLoading(false)
         } catch (err) {
             console.log(err)
         }
@@ -23,57 +27,63 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>WORLD</Text>
-                <View>
-                    <LinearGradient
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        colors={[
-                            Constants.color.cardBackgroundLeft,
-                            Constants.color.cardBackgroundRight
-                        ]}
-                        style={styles.card}
-                    >
-                        <View style={styles.cardItem}>
-                            <Text style={[styles.content, { color: 'white' }]}>Total Case</Text>
-                            <Text style={[styles.content, { color: Constants.color.green }]}>
-                                {new Intl.NumberFormat('en').format(689123456)}
-                            </Text>
-                        </View>
-                        <View style={styles.cardItem}>
-                            <Text style={[styles.content, { color: 'white' }]}>NEW CASES</Text>
-                            <Text style={[styles.content, { color: Constants.color.green }]}>
-                                {new Intl.NumberFormat('en').format(689123456)}
-                            </Text>
-                        </View>
-                        <View style={styles.cardItem}>
-                            <Text style={[styles.content, { color: 'white' }]}>ACTIVE CASES</Text>
-                            <Text style={[styles.content, { color: Constants.color.yellow }]}>
-                                {new Intl.NumberFormat('en').format(689123456)}
-                            </Text>
-                        </View>
-                        <View style={styles.cardItem}>
-                            <Text style={[styles.content, { color: 'white' }]}>CRITICAL</Text>
-                            <Text style={[styles.content, { color: Constants.color.orange }]}>
-                                {new Intl.NumberFormat('en').format(689123456)}
-                            </Text>
-                        </View>
-                        <View style={styles.cardItem}>
-                            <Text style={[styles.content, { color: 'white' }]}>TOTAL DEATHS</Text>
-                            <Text style={[styles.content, { color: Constants.color.red }]}>
-                                {new Intl.NumberFormat('en').format(689123456)}
-                            </Text>
-                        </View>
-                        <View style={styles.cardItem}>
-                            <Text style={[styles.content, { color: 'white' }]}>NEW DEATHS</Text>
-                            <Text style={[styles.content, { color: Constants.color.red }]}>
-                                {new Intl.NumberFormat('en').format(689123456)}
-                            </Text>
-                        </View>
-                    </LinearGradient>
+            {!isLoading && (
+                <View style={styles.header}>
+                    <Text style={styles.title}>WORLD</Text>
+                    <View>
+                        <LinearGradient
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            colors={[
+                                Constants.color.cardBackgroundLeft,
+                                Constants.color.cardBackgroundRight
+                            ]}
+                            style={styles.card}
+                        >
+                            <View style={styles.cardItem}>
+                                <Text style={[styles.content, { color: 'white' }]}>Total Case</Text>
+                                <Text style={[styles.content, { color: Constants.color.green }]}>
+                                    {new Intl.NumberFormat('en').format(worldData.TotalCases)}
+                                </Text>
+                            </View>
+                            <View style={styles.cardItem}>
+                                <Text style={[styles.content, { color: 'white' }]}>NEW CASES</Text>
+                                <Text style={[styles.content, { color: Constants.color.green }]}>
+                                    {new Intl.NumberFormat('en').format(worldData.NewCases)}
+                                </Text>
+                            </View>
+                            <View style={styles.cardItem}>
+                                <Text style={[styles.content, { color: 'white' }]}>
+                                    ACTIVE CASES
+                                </Text>
+                                <Text style={[styles.content, { color: Constants.color.yellow }]}>
+                                    {new Intl.NumberFormat('en').format(worldData.ActiveCases)}
+                                </Text>
+                            </View>
+                            <View style={styles.cardItem}>
+                                <Text style={[styles.content, { color: 'white' }]}>CRITICAL</Text>
+                                <Text style={[styles.content, { color: Constants.color.orange }]}>
+                                    {new Intl.NumberFormat('en').format(worldData.Serious_Critical)}
+                                </Text>
+                            </View>
+                            <View style={styles.cardItem}>
+                                <Text style={[styles.content, { color: 'white' }]}>
+                                    TOTAL DEATHS
+                                </Text>
+                                <Text style={[styles.content, { color: Constants.color.red }]}>
+                                    {new Intl.NumberFormat('en').format(worldData.TotalDeaths)}
+                                </Text>
+                            </View>
+                            <View style={styles.cardItem}>
+                                <Text style={[styles.content, { color: 'white' }]}>NEW DEATHS</Text>
+                                <Text style={[styles.content, { color: Constants.color.red }]}>
+                                    {new Intl.NumberFormat('en').format(worldData.NewDeaths)}
+                                </Text>
+                            </View>
+                        </LinearGradient>
+                    </View>
                 </View>
-            </View>
+            )}
         </View>
     )
 }

@@ -17,7 +17,7 @@ const Tabs = () => {
                     let iconName
 
                     if (route.name === constants.ROUTE.HOME)
-                        iconName = focused ? 'home' : 'home-outline'
+                        iconName = focused ? 'globe' : 'globe-outline'
                     if (route.name === constants.ROUTE.DETAILS)
                         iconName = focused ? 'albums' : 'albums-outline'
 
