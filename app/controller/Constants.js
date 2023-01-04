@@ -19,7 +19,8 @@ export default {
     },
     ROUTE: {
         HOME: 'Home Tab',
-        DETAILS: 'Detail Tab'
+        DETAILS: 'Detail Tab',
+        NEWS: 'News Tab',
     },
     images: {
         icon: {

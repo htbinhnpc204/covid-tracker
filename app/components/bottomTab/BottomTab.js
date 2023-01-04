@@ -3,6 +3,7 @@ import constants from '../../controller/Constants'
 import DetailsScreen from '../details/DetailsScreen'
 import HomeScreen from '../home/HomeScreen'
 import Icon from 'react-native-vector-icons/Ionicons'
+import NewsScreen from '../news/NewsScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -21,6 +22,8 @@ const Tabs = () => {
                         iconName = focused ? 'globe' : 'globe-outline'
                     if (route.name === constants.ROUTE.DETAILS)
                         iconName = focused ? 'list' : 'list-outline'
+                    if (route.name === constants.ROUTE.NEWS)
+                        iconName = focused ? 'newspaper' : 'newspaper-outline'
 
                     return <Icon name={iconName} size={25} color={constants.color.primary} />
                 },
@@ -28,18 +31,16 @@ const Tabs = () => {
                     position: 'absolute',
                     width: constants.dimensions.screen.width * 0.95,
                     left: constants.dimensions.screen.width * 0.025,
-                    bottom: constants.dimensions.screen.height * 0.025,
+                    height: 40,
+                    bottom: 20,
                     backgroundColor: constants.color.secondary,
                     borderRadius: 12,
                 },
-                tabBarIconStyle: {
-                    margin: 5,
-                    borderRadius: 10
-                }
             })}
         >
             <Tab.Screen name={constants.ROUTE.HOME} component={HomeScreen}></Tab.Screen>
             <Tab.Screen name={constants.ROUTE.DETAILS} component={DetailsScreen}></Tab.Screen>
+            <Tab.Screen name={constants.ROUTE.NEWS} component={NewsScreen}></Tab.Screen>
         </Tab.Navigator>
     )
 }

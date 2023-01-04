@@ -1,9 +1,9 @@
 import axiosService from '../axiosServices'
 import axios from 'axios'
-import { API_BASE_URL, WORLD_URL } from '../urls'
+import { API_BASE_URL, COUNTRIES_URL, WORLD_URL } from '../urls'
 
 const CovidAPI = {
-    getAll: async () => {
+    getCountries: async () => {
         return axiosService()({
             url: API_BASE_URL,
             method: 'GET'
