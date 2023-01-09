@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: Constants.color.background,
         alignItems: 'center',
         width: Constants.dimensions.width,
-        paddingBottom: 80
+        paddingBottom: 40
     },
     listContainer: {
         width: '100%'

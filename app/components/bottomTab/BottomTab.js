@@ -12,8 +12,6 @@ const Tabs = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarShowLabel: false,
-                tabBarLabelPosition: 'bottom',
-                tabBarHideOnKeyboard: true,
                 headerShown: false,
                 tabBarIcon: ({ focused }) => {
                     let iconName
@@ -29,13 +27,10 @@ const Tabs = () => {
                 },
                 tabBarStyle: {
                     position: 'absolute',
-                    width: constants.dimensions.screen.width * 0.95,
-                    left: constants.dimensions.screen.width * 0.025,
-                    height: 40,
-                    bottom: 20,
                     backgroundColor: constants.color.secondary,
-                    borderRadius: 12,
-                },
+                    borderTopLeftRadius: 12,
+                    borderTopEndRadius: 12
+                }
             })}
         >
             <Tab.Screen name={constants.ROUTE.HOME} component={HomeScreen}></Tab.Screen>

@@ -21,6 +21,9 @@ export default {
         HOME: 'Home Tab',
         DETAILS: 'Detail Tab',
         NEWS: 'News Tab',
+        CORONA: 'Corona',
+        HEALTH: 'Health',
+        VACCINE: 'Vaccine'
     },
     images: {
         icon: {

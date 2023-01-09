@@ -156,7 +156,8 @@ android {
             }
             if (!enableSeparateBuildPerCPUArchitecture) {
                 ndk {
-                    abiFilters (*reactNativeArchitectures())
+                    // abiFilters (*reactNativeArchitectures())
+                    abiFilters 'armeabi-v7a', 'x86'
                 }
             }
         }
@@ -291,6 +292,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation project(':react-native-vector-icons')
+    implementation "com.android.support:appcompat-v7:27.0.2"
+    implementation "com.facebook.react:react-native:+"  // From node_modules
 }
 
 if (isNewArchitectureEnabled()) {
