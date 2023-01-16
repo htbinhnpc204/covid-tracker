@@ -1,16 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Constants from '../../../controller/Constants'
+import { useNavigation } from '@react-navigation/native'
 
-const ListItem = ({ item, index }) => {
+const CountryItem = ({ item, index }) => {
+    const navagator = useNavigation()
     return (
         item.Continent != 'All' && (
-            <View style={styles.card}>
+            <TouchableOpacity
+                style={styles.card}
+                onPress={() => {
+                    navagator.navigate(Constants.ROUTE.COUNTRY_DETAIL, {
+                        NAME: item.Country,
+                        ISO: item.ThreeLetterSymbol,
+                        CountryData: item
+                    })
+                }}
+            >
                 <Text style={styles.header}>
                     {item.Country} ({item.ThreeLetterSymbol})
                 </Text>
 
-                <View style={styles.container}>
+                <View style={[styles.container, styles.row]}>
                     <Text style={[styles.text, { color: Constants.color.yellow }]}>
                         Active cases: {new Intl.NumberFormat('en').format(item.ActiveCases)}
                     </Text>
@@ -24,16 +35,15 @@ const ListItem = ({ item, index }) => {
                         New deaths: {new Intl.NumberFormat('en').format(item.NewDeaths)}
                     </Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     )
 }
 
-export default ListItem
+export default CountryItem
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         flexWrap: 'wrap',
         alignContent: 'stretch',
     },
@@ -43,9 +53,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: Constants.color.secondary,
         width: '95%',
-        height: 72,
-        paddingVertical: 3,
-        paddingHorizontal: 5,
+        paddingVertical: 7,
+        paddingHorizontal: 8,
         shadowColor: Constants.color.primary,
         shadowOffset: {
             width: 1,
@@ -60,13 +69,16 @@ const styles = StyleSheet.create({
         color: 'white',
         textTransform: 'uppercase',
         fontWeight: 'bold',
+        fontSize: 21,
         letterSpacing: 2,
-        marginBottom: 5
+        marginBottom: 12
     },
     text: {
-        width: '45%',
-        fontSize: 12,
-        letterSpacing: 1,
+        width: '50%',
+        fontWeight: '400',
+        letterSpacing: 0.6,
+        fontSize: 16,
+        marginBottom: 8,
         color: 'white',
     },
     row: {

@@ -19,7 +19,9 @@ export default {
     },
     ROUTE: {
         HOME: 'Home Tab',
-        DETAILS: 'Detail Tab',
+        COUNTRIES_ROUTE: 'Countries Route',
+        COUNTRIES_LIST: 'Countries List',
+        COUNTRY_DETAIL: 'Country Detail',
         NEWS: 'News Tab',
         CORONA: 'Corona',
         HEALTH: 'Health',
@@ -32,13 +34,74 @@ export default {
     },
     font: {
         title: {
-            size: 28,
+            size: 42,
             spacing: 4,
-            weight: '600'
+            weight: '700'
         },
         content: {
-            size: 24,
-            spacing: 2
+            size: 26,
+            spacing: 2,
+            weight: '500'
+        }
+    },
+    configType: {
+        newCases: 'NEW CASES',
+        newDeaths: 'NEW DEATHS',
+        totalCases: 'TOTAL CASES',
+        totalDeaths: 'TOTAL DEATHS'
+    },
+    chartConfig: {
+        newCase: {
+            backgroundColor: '#0ba300',
+            backgroundGradientFrom: '#02bf0e',
+            backgroundGradientTo: '#07e070',
+            decimalPlaces: 2, // optional, defaults to 2dp,
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            propsForDots: {
+                r: '6',
+                strokeWidth: '2',
+                stroke: '#0E0'
+            }
+        },
+        totalCase: {
+            backgroundColor: '#104f00',
+            backgroundGradientFrom: '#138c05',
+            backgroundGradientTo: '#73af00',
+            decimalPlaces: 1, // optional, defaults to 2dp,
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            propsForDots: {
+                r: '6',
+                strokeWidth: '2',
+                stroke: '#1F1'
+            }
+        },
+        newDeaths: {
+            backgroundColor: '#440000',
+            backgroundGradientFrom: '#741c00',
+            backgroundGradientTo: '#783103',
+            decimalPlaces: 2,
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            propsForDots: {
+                r: '6',
+                strokeWidth: '2',
+                stroke: '#f31'
+            }
+        },
+        totalDeaths: {
+            backgroundColor: '#5e1100',
+            backgroundGradientFrom: '#f32e00',
+            backgroundGradientTo: '#ff1c26',
+            decimalPlaces: 3, // optional, defaults to 2dp,
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            propsForDots: {
+                r: '6',
+                strokeWidth: '2',
+                stroke: '#f31'
+            }
         }
     }
 }
