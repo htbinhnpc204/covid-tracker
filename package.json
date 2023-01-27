@@ -6,6 +6,7 @@
         "android": "npx react-native run-android",
         "android:debug": "npx react-native run-android --variant=debug",
         "android:release": "npx react-native run-android --variant=release",
+        "android:build": "cd android & gradlew assembleRelease",
         "android:bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
         "ios": "react-native run-ios",
         "start": "react-native start",
